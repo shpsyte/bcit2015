@@ -7,33 +7,42 @@
     <title>Document</title>
     
     <link rel="stylesheet" href="style.css">
+
+    <script>
+    // Problem: we want to access HTML elements but they dont exist yet
+    // Solution 
+    window.onload = function () {
+        // document.querySelector("#heading").style.color = 'red';
+        
+    }
+    </script>
+    
 </head>
 <body>
     <div id="wrapper">
+      
+                    
         <main>
-            <section>
-                <h1> <a id="title" href="index.html">Lesson 01</a> </h1>
+            <section  class="sec01">
+                <h1 id="heading"> Lesson 01 </h1>
             </section>
             
-            <!--             
-
-            div>ul>li*7
-
+<!--        div>ul>li*7
             div>ul>li.liet-item{list item $}*7
-
-            div>ul>li[data-id="listItems$"]{list item $}*7 -->
-
-
-
-
+            div>ul>li[data-id="listItems$"]{list item $}*7  -->
+            
             
         </main>
+         
+
+
         <!-- <footer>
             <p>Web site design by Jose Luiz.</p>
         </footer> -->
         
     </div>
-    <script src="site.js"></script>
+    
+   <script defer src="site.js"></script> 
     
 </body>
 </html>
