@@ -56,3 +56,6 @@ if (!isTusday)
 {
     console.log('Here?')
 }
+
+let date = new Date()
+console.log(date)
