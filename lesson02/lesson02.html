@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="heading">Lesson 2</h1>
+    <p id="p1">Paragraph 1</p>
+    <p id="p2">Paragraph 2</p>
+    <script>
+        // Arrays - type of data that can store multiple values
+        
+        let school1 = 'BCIT';
+        let school2 = 'SFU';
+        let school3 = 'VCC';
+
+        // Two ways to create an array in JS
+        // 1. using []
+        let emptyArray = [];
+        console.log(emptyArray);
+
+        // note: every array has a .length property
+        console.log('the length of emptyArray is', emptyArray.length); // return 0
+
+        // 2. use the 'new' keyword
+        let anotherEmptyArray = new Array(); // arrays created with 'new' are the exact same as arrays with []
+
+
+        // Add items to an array - 3 ways
+        // 1. initializing an array
+        let schools = ['BCIT', 'SFU', 'VCC'];
+        console.log(schools);
+        console.log('there are', schools.length, 'schools');
+
+        // 2. using square brackets and a position/index
+        schools[3] = 'Langara';
+        console.log(schools);
+
+        schools[0] = 'UBC';
+        console.log(schools);
+
+        // 3. use .push() method - push() adds new items to the end of the array
+        schools.push('Capilano'); // [UBC, SFU, VCC, Langara, Capilano];
+        console.log(schools.length); // prints 5
+
+        // note: you can add items to any position in an array
+        schools[50] = 'Douglas'; // OK
+        console.log(schools);
+
+        // Retrieving items from an array
+        console.log(schools[30]); // return undefined
+
+        // note: js arrays can hold multiple data types
+        let mixedArray = ['BCIT', 2015, false, {}];
+
+        // we can also have nested arrays
+        let nestedArray = [
+            'COMP',
+            2015,
+            [1, 2, 3]
+        ];
+        console.log(nestedArray[1]); // prints 2015
+        console.log(nestedArray[2][2]); // [1, 2, 3]
+
+        // [
+        //     [x o x]
+        //     [o o x]
+        //     [o x x]
+        // ]
+
+        // Searching arrays - .indexOf() 
+        // let schools = ['UBC', 'SFU', 'VCC',  'Langara', 'Capilano', ... 'Douglas']
+        console.log(schools);
+        console.log(schools.indexOf('VCC')); // returns 2
+        console.log(schools.indexOf('BCIT')); // returns -1, i.e. not found (because 0 and greater are all valid positions)
+
+        // aside: .indexOf() is also a string method (.lastIndexOf)
+        let state = 'Mississippi';
+        console.log(state.indexOf('is')); // returns 1, the first occurrence of the substring
+        
+        // example of how to ignore case, i.e. Is versus is
+        console.log(state.toLowerCase().indexOf('is'));
+
+        // for strings and arrays, you can also .includes() - this returns true or false if the item/substring is found
+        console.log(schools.includes('Langara')); // returns true
+    </script>
+    <script>
+
+        // DOM - Document Object Model - a model of your html file and its contents/structure
+
+        // DOM 0 - first, simplest 
+        /*
+            document.images - array of all the images on the page
+            document.links - array of all the links on the page
+            document.forms
+        */
+
+        // DOM 1 
+        /*
+            document.getElementById()
+            document.getElementsByTagName('p');
+            document.getElementsByClassName('special')
+            document.querySelector('#div1 > p'); // returns the first matching element
+            document.querySelectorAll('#div1 > p'); // returns an array of all matching elements
+        */
+        document.getElementById('heading').style.color = 'red';
+
+        // document.getElementsByTagName('p').style.color = 'green'; // This does not work! You cannot set properties on all items in an array in one line
+
+        // any time a question says change EVERY element, ALL the elements --> means you will have an array and you need to loop through the array
+
+        // problem: we cannot set properties of multiple elements in an array at once
+        // solution: we can loop through the array
+    </script>
+    <script>
+        // Loops - a way of repeating one or more statements multiple times
+
+        // for-of loop
+            let allParagraphs = document.getElementsByTagName('p');
+            allParagraphs[0].style.color = 'green';
+            allParagraphs[1].style.color = 'green';
+            
+            // DRY - Don't Repeat Yourself
+            // problem - what if there are 1000s of paragraphs or you don't know the total number of paragraphs? use a loop
+            
+            console.log(allParagraphs);
+
+            // [ #p1, #p2 ]
+
+            console.log('before the loop');
+
+            for (let paragraph of allParagraphs) {
+                console.log('inside the loop');
+                /*
+                    any statements in between will run as many times as there items in the array 
+
+                    e.g. our allParagraphs array has length 2, so the statements inside the for loop will run twice
+                */
+               console.log('updating paragraph', paragraph);
+               paragraph.style.color = 'green';
+            }
+            console.log('after the loop');
+
+
+            // Practice: create an html file with a few links
+
+            // retrieve all the links on the page
+            // document.links ->  document.getElementsByTagName()
+            let links = document.links;
+
+            // loop through and update some property of the links (style.color, className)
+
+            /*
+                any hyphenated CSS property becomes camelCase in JS
+                e.g.    font-size --> .style.fontSize
+                        background-color --> .style.backgroundColor
+
+            */
+
+    </script>
+    <script>
+        // Conditional (IF) Statements
+
+        // Logical Operators
+        // > greater than, < less than, >=, <=, && (and), || (or), ! (not)
+        // ==, ===
+        // double equals only checks for matching value
+        // triple equals checks for matching value and data type
+
+        let x = "10";
+
+        if (x == 10) {
+            // console.log('x is equal to the value 10');
+        }
+        if (x === 10) {
+            console.log('x is equal to the number 10');
+        }
+        else {
+            console.log('x is not equal to the number 10');
+        }
+
+        let age = 17;
+
+        if (age >= 16) {
+            // if the condition (age >= 16) then everything inside the braces (block) runs
+            // console.log('you can drive');
+        }
+        // if the condition is not true (i.e. age < 16) then the whole block is skipped
+        // console.log('after the if statement');
+
+        
+
+        /*
+            rules for conditional statements:
+
+            a single if at the beginning
+            multiple optional else ifs after the if
+            optional single else at the end
+        */
+
+        age = 10;
+        let stoleACar = true;
+
+        if (age >= 16) {
+            // if age >= 16 this block is run and the else is skipped
+            console.log('you can drive');
+        }
+        else if (stoleACar) {
+            console.log('you can drive');
+        }
+        else {
+            // if age < 16, this block is run and the if is skipped
+            console.log('you cannot drive');
+        }
+
+        // testing complex conditions using   && and   || or
+
+        if ((age >= 16 && age <= 110) || stoleACar) {
+            console.log('you can drive');
+        }
+        else {
+            console.log('you cannot drive')
+        }
+
+        // shortcuts for determining truth values of statements
+
+        /*
+            && and
+
+            chris teaches comp 2015 and it is monday - T
+            chris teaches comp 2015 and it is tuesday - F
+            it is tuesday and chris teaches comp 2015 - F
+            chris is 7 feet tall and it is tuesday - F
+
+            T && T = T otherwise false
+        */
+
+        /*
+            || or
+
+            chris teaches comp 2015 or it is monday - T
+            chris teaches comp 2015 or it is tuesday - T
+            it is tuesday or chris teaches comp 2015 - T
+            chris is 7 feet tall or it is tuesday - F
+
+            F || F = F, otherwise true
+        */
+    
+        let x = 10;
+        let itsTuesday = false;
+
+        if (itsTuesday && x < 10) { // in this case, the value of x is not checked, because the first condition (itsTuesday) is false, and false AND anything else always evaluates to false
+
+        }
+    </script>
+    <script>
+        // Dates - JS has a date object that allows us to get the current date/time as well as past & future dates
+
+        let now = new Date();
+        console.log(now);
+
+        // for part 1, create a date object, use methods of the date object to extract the parts you need, then concatenate them with a colon
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+
+        // part 2
+
+        /*
+            steps:
+
+            1. create an array of strings
+            2. loop through them
+
+            for (let user of users) {
+                steps 3 to n happen inside the for loop
+            }
+
+            3. write an if statement and use .includes() to check if the name contains i
+
+            4. if so, alert the name
+        */
+
+        // part 4
+        // for the width and height, use style.width and style.height --> "100px"
+        // .className property allows you to add classes to an element
+        
+    </script>
+</body>
+</html>
