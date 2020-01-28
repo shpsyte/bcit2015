@@ -19,7 +19,7 @@ let defaultColor = function() {
 
 let changeColor = function(e) {
   let index = this.id - 1; // the name of element is 1,2,3
-  this.style.color = colors[index];
+  this.style.Color = colors[index];
 };
 
 for (const p of document.querySelectorAll("#div2 p")) {
