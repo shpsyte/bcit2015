@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="toggle">Start/Stop</button>
+    <!-- <p><button></button></p>
+    <div id="div2">
+        <p>paragraph 1</p>
+        <p>paragraph 2</p>
+        <p>paragraph 3</p>
+    </div> -->
+    <img src="dog.jpg" alt="">
+    <script>
+        let colors = ["green", "blue", "red"];
+        let paragraphs = document.querySelectorAll('#div2 p');
+
+        // let index = 0;
+        
+        // for (let paragraph of paragraphs) {
+        //     paragraph.onmouseenter = function() {
+        //         console.log(index);
+        //         paragraph.style.backgroundColor = colors[index];
+        //     }
+        //     paragraph.onmouseout = function() {
+        //         paragraph.style.backgroundColor = "white";
+        //     }
+        //     index++;
+        // }
+
+        /*
+                onmouseenter onmouseleave
+                onmouseover onmouseout
+
+                https://stackoverflow.com/questions/1104344/what-is-the-difference-between-the-mouseover-and-mouseenter-events
+
+        */
+
+        for (let i = 0; i < paragraphs.length; i++) {
+            paragraphs[i].onmouseenter = function() {
+                paragraphs[i].style.backgroundColor = colors[i];
+            }
+            paragraphs[i].onmouseout = function() {
+                paragraphs[i].style.backgroundColor = "white";
+            }
+        }
+    </script>
+    <script>
+        // Timers
+
+        /*
+            setTimeout(function, ms) - delay some code by a specified number of ms, runs once
+
+            setInterval() - runs code repeatedly with a pause specified in ms, runs multiple times
+
+        */
+        let first = prompt('please enter your name');
+
+        setTimeout(function() { 
+            console.log('inside the setTimeout');
+        }, 3000);
+
+        console.log('after the setTimeout');
+
+        // NOTE: the setTimeout does not stop the rest of the script from executing (javascript is asynchronous)
+
+        // Event Loop (blocking the event loop with user input) / Stack
+        /*
+            javascript can only run one thing at a time, and functions that require use input can block statements from being run - the setTimeout above does not run until 3 seconds after the prompt window is dismissed
+        */
+    </script>
+    <script>
+        // setInterval(function() {}, ms)
+        let dog = document.images[0];
+        dog.style.position = 'absolute';
+        dog.style.left = 0;
+        dog.style.top = 0;
+
+        let button = document.getElementById('toggle');
+        button.style.position = 'absolute';
+        button.style.bottom = 0;
+        button.style.left = 0;
+        button.style.fontSize = '2em';
+
+        let i = 0;
+
+        // setInterval(function() {
+        //     console.log(i++);
+        // }, 20);
+
+        // setInterval(function() {
+        //    let position = parseInt(dog.style.left);
+        //    position++;
+        //    dog.style.left = position + "px";
+        // }, 20);
+
+        // problem: we need to have control over the animations (i.e. stopping/starting the intervals)
+
+        // let animationID = setInterval(function() {
+        //    let position = parseInt(dog.style.left);
+        //    position++;
+        //    dog.style.left = position + "px";
+
+        //    if (position >= 200) {
+        //        clearInterval(animationID);
+        //    }
+        // }, 20);
+
+        // console.log(animationID);
+
+        // clearInterval(id) - stops an interval/animation
+
+
+        // example - user input to start/stop an animation
+        button.onclick = startStop;
+
+        // startStop handles the logic for whether the button should cause the dog to stop moving or start moving
+        let id = null;
+
+        function startStop() {
+            if (id === null) {
+                // if id is null, we run this section and the animation starts, which assigns some non null number value to id
+                id = setInterval(animate, 20);
+            }
+            else {
+                // id is equal to some number after the button is clicked, so we need to stop the animation
+                clearInterval(id);
+                id = null;
+            }
+        }
+
+        function animate() {
+            let position = parseInt(dog.style.left);
+            position++;
+            dog.style.left = position + "px";
+        }
+    </script>
+    <script>
+        // fetch(), JSON, APIs
+
+        // JSON - for valid json, the keys (properties) have to be strings, the values can be any type of data
+        // {
+        //     "id": 1,
+        //     "username": "chris"       
+        // }
+        // let data = [ {"id": 1, "username": "chris"}, {"id": 2}, {} ];
+
+        // for (let object of data) {
+        //     console.log(object.id);
+        //     console.log(object.username);
+        // }
+
+        // API - application programming interface
+        // set of URLs (endpoints) that return JSON data (javascript object notation)
+
+        // comp2015.herokuapp.com
+        // comp2015.herokuapp.com/messages
+        // comp2015.herokuapp.com/images
+
+        // api.instagram.com/user/234526/post
+
+        // wordpress has a built-in js api
+        // http://sitename/wp-json/wp/v2/posts
+        // http://sitename/wp-json/wp/v2/pages
+
+
+
+        // Practice: fetching data and logging it to the console
+        /*
+            1. we need to fetch the data
+            2. we log the data
+
+            we need these two things to happen synchronously, i.e. step 2 cannot happen until step 1 is finished
+
+            fetch() uses Promises https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise to simulate this synchronous behaviour
+        */
+       // when the data has been fetched, THEN move on to the next function
+
+        fetch('http://comp2015.herokuapp.com/messages') 
+            .then(res => res.json())
+            .then(res => useData(res))
+
+        
+        // properties of arrow functions:
+
+        // 1. if we only have one parameter, we can omit the parentheses
+        /*
+            (res) => {
+
+            }
+
+
+            res => {
+                
+            }
+
+
+            2. if we only have one statement inside the function, we can omit the braces
+
+            res => {
+                console.log()
+            }
+
+            res => console.log()
+
+
+            3. arrow functions have implicit returns
+
+            res => console.log()
+
+            res => return console.log()
+        */
+    </script>
+    <script>
+        // assignment, part 1
+        // note: you need to verify that the images array is full inside the useData
+        // function
+
+        function useData(data) {
+            // populate the array
+        }
+    </script>
+    <script>
+        window.innerWidth
+    </script>
+    <script>
+        // Web Workers - 
+    </script>
+</body>
+</html>
