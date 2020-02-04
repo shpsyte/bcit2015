@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background: #f4f7fa;
+
+}
+
+input, button
+{
+    outline: 0;
+}
+
+ul
+{
+    padding: 10px;
+}
+
+#submit
+{
+
+    border-radius: 16px;
+    background: #cdd2d8;
+    padding: 0 16px;
+    height: 30px;
+    border: 0;
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+    
+    
+}
+
+
+
+#todoText
+{
+    border-radius: 16px;
+    border: 1px solid #cdd2d8;
+    height: 30px;
+    width: 240px;
+    padding: 0 20px;
+
+}
+.containter
+{
+    margin: 0 auto;
+    height: 100%;
+    max-width: 1500px;
+
+}
+
+.containter h1{
+    color: red;
+    font-weight: 900;
+}
+
+
+#todos{
+   float: left;
+   display: flex;
+   flex-wrap: wrap;
+   
+}
+
+ul li 
+{
+    padding: 15px;
+    list-style: none;
+}
+header .containter
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+header{
+    background: #fff;
+    box-shadow: 1px 1px 0 rgba(0,0,0,.25);
+    height: 46px;
+}
+
