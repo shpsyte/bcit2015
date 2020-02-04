@@ -17,12 +17,17 @@ let images = [];
 let url = "http://comp2015.herokuapp.com/images";
 
 // Load img
-var LoadImgIntoArray = data => (images = data);
+var App = data => {
+   images = data;
+   AddClickToStart();
+   AddClickToStop();
+
+};
 
 // fetching data
 fetch(url)
   .then(request => request.json())
-  .then(data => LoadImgIntoArray(data));
+  .then(data => App(data));
 
 // Part 2
 /* ******************************************************************************************************|
@@ -70,25 +75,27 @@ function advanceSlides() {
  * null, clear the interval and set timer back to null
  **********************************************************************************************************/
 
-var animate = () => {
-  advanceSlides();
-};
 
 let id = null;
-start.addEventListener("click", () => {
-  if (id === null) {
-    animate();
-    id = setInterval(animate, 3000);
-  }
-});
+let AddClickToStart = () => {
+  start.addEventListener("click", () => {
+    if (id === null) {
+      advanceSlides();
+      id = setInterval(advanceSlides, 3000);
+    }
+  });
+}
 
-stop.addEventListener("click", () => {
-  if (id !== null) {
-    clearInterval(id);
-    id = null;
-  }
-});
 
+let AddClickToStop = () =>
+{
+  stop.addEventListener("click", () => {
+    if (id !== null) {
+      clearInterval(id);
+      id = null;
+    }
+  });
+}
 // Part 5
 /* ******************************************************************************************************|
  * Test your page by manually add class ‘mobile’ to the body tag.You will notice when you reload the page
@@ -109,6 +116,7 @@ let mobile = wide => {
   }
 };
 mobile(window.innerWidth);
+
 
 // Part 6
 /* ******************************************************************************************************|
