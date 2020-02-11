@@ -18,9 +18,7 @@ let questionOne = ["windows", "document", "console"];
  * To check whether an element contains the class “special”,
  * you may use either the .className property, or the .classList array
  * *******************************************************************/
-let h1s = document.querySelectorAll("h1");
-
-for (let h1 of h1s) {
+for (let h1 of document.querySelectorAll("h1")) {
   if (!h1.className.toLowerCase().includes("special")) {
     h1.style.color = "red";
   }
@@ -39,9 +37,7 @@ for (let h1 of h1s) {
  * (i.e. return the keyword ‘true’), else return false
  */
 
-let links = document.querySelectorAll("a");
-
-for (let link of links) {
+for (let link of document.querySelectorAll("a")) {
   if (link.href.includes("bcit")) {
     link.style.textDecoration = "none";
   }
@@ -159,13 +155,14 @@ document.body.appendChild(p);
  */
 
 function questionSeven() {
-  return (book = {
+  return  {
     title: "JavaScript: The Definitive Guide",
     author: "David Flanagan",
-    yearPublished: 2011
-  });
-}
+    yearPublished: 2011,
+    readBook: function() {
+      return "javascript rocks";
+    }
 
-function readBook() {
-  return "javascript rocks";
+  };
 }
+ 
